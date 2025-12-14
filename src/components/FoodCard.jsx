@@ -11,7 +11,7 @@ const FoodCard = ({item}) => {
   return (
     <>
     <div className="food-card mb-5 min-h-[40vh] sm:min-h-[70vh] w-full flex flex-col gap-2 justify-between items-center rouded-lg px-5 py-2 bg-white shadow-[0_0px_10px_0] hover:shadow-[0_5px_10px_0] hover:shadow-text/10 transition-all duration-300 shadow-text/5">
-        <div className="image overflow-hidden rounded-full aspect-square w-full h-1/2">
+        <div className="image overflow-hidden rounded-full aspect-square w-full">
             <img src={item.imgURL} className='w-full h-full object-cover' alt="" />
         </div>
         <h2 className='text-2xl text-text font-bold -mt-2'>{lanValue ? item.name_ar : item.name_en}</h2>
