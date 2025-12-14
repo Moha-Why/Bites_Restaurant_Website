@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --color-background : #fffcf7;
+  --color-button: #f4be58;
+  --color-card: #fefefe;
+  --color-text: #08080a;
+  --color-para: #6c695f;
+  --animate-pulseRL: pulseRL 1s infinite;
+
+  @keyframes pulseRL {
+    0,
+    100% {
+      transform: translateX(0)
+    }
+
+    50% {
+      transform: translateX(-20px)
+    }
+  }
+}
+
+@layer base {
+  html {
+    font-family: "Cairo", sans-serif;
+  }
+
+  body {
+    background-color: var(--color-background);
+  }
+}
+
+@layer utilities {
+
+}
+
+@layer components {
+  .price {
+    @apply text-2xl font-bold text-[#402b23]
+  }
+}
+
+@plugin 'tailwind-scrollbar';
