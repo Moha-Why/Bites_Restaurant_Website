@@ -21,7 +21,7 @@ const footer = () => {
             </div>
             Bites
         </div>
-            <h1 className='text-4xl'>{lanValue ? "بنقدم الطعم الفضل" : "Providing the best taste"}</h1>
+            <h1 className='text-4xl'>{lanValue ? "بنقدم الطعم الافضل" : "Providing the best taste"}</h1>
         </div>
         <nav className=''>
             <ul className='flex flex-col gap-2 items-center lg:flex-row-reverse justify-between text-xl lg:gap-10 font-light'>
