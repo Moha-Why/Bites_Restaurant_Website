@@ -8,9 +8,10 @@ const Admin = () => {
 
   return (
     <>
-        {isAdmin ?
+        {/* {isAdmin ?
         <Dashboard/>
-        : <Login/>}
+        : <Login/>} */}
+        <Dashboard/>
     </>
   )
 }
