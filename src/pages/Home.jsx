@@ -61,7 +61,7 @@ const Home = () => {
         {/* Start About */}
         <section className={`about flex flex-col-reverse ${lanValue ? "md:flex-row" : "md:flex-row-reverse"} items-center justify-center gap-8 p-5`}>
           <div className="context w-full md:w-[40%] flex flex-col gap-8">
-            <h2 className='text-4xl font-bold text-text'>{lanValue ? "احنا مش مجرد مططعم عادى" : "We Are More Than A Normal Restaurant"}</h2>
+            <h2 className='text-4xl font-bold text-text'>{lanValue ? "احنا مش مجرد مطعم عادى" : "We Are More Than A Normal Restaurant"}</h2>
             <p className='text-para'>{lanValue 
             ? "نحن مطعم يختص بتقديم الوجبات السريعة وخيارات الطعام المريحة، بالإضافة إلى مجموعة من المشروبات والوجبات الخفيفة. يرتكز المفهوم على السرعة والكفاءة، مما يتيح للزبائن خدمة فورية دون التضحية بالنكهة." 
             : "We are the type of restaurant that specializes in serving quick meals and convenient food options, along with a variety of drinks and small snacks. The concept focuses on speed and efficiency, offering customers fast service without compromising on taste."}</p>

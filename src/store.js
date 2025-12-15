@@ -6,6 +6,10 @@ function getData() {
 }
 
 export const useStore = create((set) => ({
+    orderToastVisible: false,
+    updateOrderToastVisible: (value) => {
+        set(state => ({orderToastVisible: value}))
+    },
     branch: 1,
     updateBranch: (num) => {
         set({branch: num})
@@ -28,6 +32,9 @@ export const useStore = create((set) => ({
     toast: 0,
     setToast: () => {
         set(state => ({toast: state.toast + 1}))
+    },
+    toastReset:() => {
+        set(state => ({toast: 0}))
     },
     menu: [],
     menuUpdate: async () => {

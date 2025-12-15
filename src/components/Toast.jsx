@@ -4,10 +4,12 @@ import { useStore } from '../store'
 const Toast = () => {
     const [isVisible, setIsVisible] = useState(false)
     const trigger = useStore(state => state.toast)
+    const resetTrigger = useStore(state => state.toastReset)
     useEffect(() => {
         if (!trigger) return;
         setIsVisible(true)
-        const timer = setTimeout(() => {setIsVisible(false)}, 1000)
+        const timer = setTimeout(() => {setIsVisible(false); resetTrigger()}, 1000)
+        
 
         return () => clearTimeout(timer)
     }, [trigger])

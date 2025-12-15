@@ -10,12 +10,14 @@ import { useStore } from '../store'
 import FoodCardTwo from '../components/FoodCardTwo'
 import Branch from '../components/Branch'
 import FormPop from '../components/formPop'
+import OrderCompletedToast from '../components/OrderToast'
 
 const cart = () => {
   const navigate = useNavigate()
 
   const [formState, setFormState] = useState(false) 
   const lanValue = useStore(state => state.lanValue) 
+  const orderToastVisible = useStore(state => state.orderToastVisible) 
   const menuUpdate = useStore(state => state.menuUpdate) 
   const updateOrderData = useStore(state => state.updateOrderData) 
   const cartIdentifier = useStore(state => state.cart) 
@@ -51,7 +53,7 @@ const cart = () => {
         </div>
         <h2 className="w-full text-center sm:w-fit place-holder text-4xl font-bold">Orders</h2>
         {cartItems.length === 0 
-        ? <h3 className='text-3xl absolute left-1/2 -translate-x-1/2 top-1/2 text-para' >Nothing in here</h3> 
+        ? <h3 className='text-3xl relative mb-20 sm:m-0 sm:absolute left-1/2 -translate-x-1/2 top-1/2 text-para' >Nothing in here</h3> 
         : cartItems.map((ele, index) => {
           return(
             <FoodCardTwo key={index} ele={ele} />
@@ -63,6 +65,9 @@ const cart = () => {
         <Branch cart={cartItems} name="BranchTwo" id="2" openForm={openForm} />
       </section>
         {formState ? <FormPop closeForm={openForm}/> : null}
+        {orderToastVisible ? <OrderCompletedToast/> : null}
+        {/* {console.log(orderToastVisible)} */}
+
     </main>
   )
 }
