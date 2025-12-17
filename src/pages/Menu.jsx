@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useStore } from '../store'
 import FoodCard from '../components/FoodCard'
-import { easeIn, motion } from 'framer-motion'
+import { AnimatePresence, easeIn, motion } from 'framer-motion'
 
 
 const Menu = () => {
@@ -31,9 +31,11 @@ const Menu = () => {
             })}
         </div>
         <div className="item grid grid-cols-1 p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {visibleMenu.map((ele) => {
-              return <FoodCard key={ele.id} item={ele}/>
-            }) }
+            <AnimatePresence mode='wait'>
+              {visibleMenu.map((ele) => {
+                return <FoodCard key={ele.id} item={ele}/>
+              }) }
+            </AnimatePresence>
         </div>
       </div>
     </main>
