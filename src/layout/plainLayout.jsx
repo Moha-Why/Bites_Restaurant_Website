@@ -5,6 +5,7 @@ import OrderSync from '../components/OrderSync'
 const plainLayout = () => {
   return (
     <>
+        
         <Outlet></Outlet>
         <OrderSync/>
     </>

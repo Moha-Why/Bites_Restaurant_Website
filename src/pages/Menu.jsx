@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useStore } from '../store'
 import FoodCard from '../components/FoodCard'
+import { easeIn, motion } from 'framer-motion'
 
 
 const Menu = () => {
@@ -22,7 +23,7 @@ const Menu = () => {
   return (
     <>
     <main className="menuItems">
-      <h1 className='text-text text-5xl w-fit font-bold mx-auto my-5'>{lanValue ? "قائمه الطعام" : "Our Menu Items"}</h1>
+      <motion.h1 initial={{opacity: 0, y: -20}} animate={{opacity: 1, y: 0}} transition={{duration: 1, ease: easeIn}} className='text-text text-5xl w-fit font-bold mx-auto my-5'>{lanValue ? "قائمه الطعام" : "Our Menu Items"}</motion.h1>
       <div className="menuItemsAndCatagory">
         <div className="catagory flex items-center justify-center gap-5 p-5 flex-wrap">
             {catagories.map((ele, index) => {

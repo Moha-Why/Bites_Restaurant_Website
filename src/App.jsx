@@ -9,6 +9,8 @@ import RootLayout from './layout/rootLayout'
 import PlainLayout from './layout/plainLayout'
 import { RouterProvider } from 'react-router-dom'
 import Admin from './pages/Admin'
+import { AnimatePresence, motion } from 'framer-motion'
+import AnimateComp from './components/AnimateComp'
 
 const App = () => {
 
@@ -16,9 +18,9 @@ const App = () => {
     createRoutesFromElements(
     <>
       <Route path='/' element={<RootLayout />}>
-        <Route index element={<Home />} />
-        <Route path='menu' element={<Menu />} />
-        <Route path='contact' element={<Contact />} />
+        <Route index element={<AnimateComp><Home /></AnimateComp>} />
+        <Route path='menu' element={<AnimateComp><Menu /></AnimateComp>} />
+        <Route path='contact' element={<AnimateComp><Contact /></AnimateComp>} />
       </Route>
       <Route element={<PlainLayout/>}>
         <Route path='/cart' element={<Cart />} />
@@ -36,3 +38,5 @@ const App = () => {
 }
 
 export default App
+
+

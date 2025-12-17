@@ -3,12 +3,14 @@ import { Link, useOutletContext } from 'react-router'
 import items from '../data/landingItems'
 import Slider from '../components/Slider'
 import { useRef } from 'react'
+import { motion, stagger } from 'framer-motion'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
+import AnimateComp from '../components/AnimateComp'
 library.add(fas, far, fab)
 
 
@@ -16,6 +18,16 @@ const Home = () => {
   const lanValue = useOutletContext()
   const prevEl = useRef(null)
   const nextEl = useRef(null)
+  const MotionLink = motion.create(Link)
+
+  const container = {
+    hidden: {opacity: 0},
+    visible: {opacity: 1, transition: {staggerChildren: 0.5}}
+  }  
+  const item = {
+    hidden: {opacity: 0, y: 20},
+    visible: {opacity: 1, y: 0}
+  }
 
   return (
     <>
@@ -26,24 +38,24 @@ const Home = () => {
             <div className="circle ml-[6%] w-full h-full py-5 pr-5 rounded-full border-2 border-text/10">
               <div className="circle  w-full h-full rounded-full border-2 border-text/10"></div>
             </div>
-            <ul className='items-list flex flex-col gap-5 absolute right-0 translate-x-1/2'>
+            <motion.ul variants={container} initial="hidden" animate="visible" className='items-list flex flex-col gap-5 absolute right-0 translate-x-1/2'>
               {items.map((ele, index) => {
                 return (
-                  <li key={index} className={`bg-white font-bold rounded-full flex ${lanValue ? "flex-row-reverse" : ""} items-center px-2 gap-3 py-1 shadow`}>
+                  <motion.li variants={item} key={index} className={`bg-white font-bold rounded-full flex ${lanValue ? "flex-row-reverse" : ""} items-center px-2 gap-3 py-1 shadow`}>
                     <img src={ele.imgURL} className='w-8 h-8 rounded-full' alt={ele.textEn} />
                     {lanValue ? ele.textAr : ele.textEn}
-                  </li> 
+                  </motion.li> 
                 )
               })}       
-            </ul>
+            </motion.ul>
           </div>
-          <div className="landing-text w-full md:w-[47.5%] px-5 flex flex-col gap-8">
-            <h1 className='text-text font-bold text-5xl'>{lanValue ? "نقدّم لك الطعم اللي على مزاجك." : "We serve the taste you love"} <img src="/hearts.png" className='w-10 inline-block' alt="" /></h1>
+          <motion.div  className="landing-text w-full md:w-[47.5%] px-5 flex flex-col gap-8">
+            <motion.h1 initial={{opacity: 0, x: -20}} animate={{opacity: 1, x: 0}} transition={{duration: 1, ease: "easeOut"}} className='text-text font-bold text-5xl'>{lanValue ? "نقدّم لك الطعم اللي على مزاجك." : "We serve the taste you love"} <img src="/hearts.png" className='w-10 inline-block' alt="" /></motion.h1>
             <p className='text-para'>{lanValue ? "نحن نقدّم لك طعامًا لذيذًا بطريقة سهلة ومريحة، مع خدمة طلبات أونلاين بسيطة وسريعة. مع تجربة سلسة من لحظة فتح الموقع وحتى وصول طلبك. هدفنا أن تستمتع بوجبتك بدون أي تعقيد، فقط خطوات قليلة وتصل النكهة التي تحبها إلى بابك." :
               "We bring you delicious food in a simple and convenient way, giving you a smooth journey from opening the website to receiving your order. Our goal is to let you enjoy your meal without any hassle—just a few clicks, and the taste you love arrives right at your door."}
             </p>
-            <Link to={"/menu"} className='bg-button shadow-2xl hover:saturate-150 hover:scale-105 transition duration-300 text-2xl py-2 cursor-pointer text-center text-text rounded-full'><button >{lanValue ? "استكشف الطعام" : "Explore Food"}</button></Link>
-          </div>
+            <MotionLink to={"/menu"} whileHover={{scale: 1.05}} className='bg-button shadow-2xl hover:saturate-150 transition duration-300 text-2xl py-2 cursor-pointer text-center text-text rounded-full'><button >{lanValue ? "استكشف الطعام" : "Explore Food"}</button></MotionLink>
+          </motion.div>
         </div>
         {/* Start popular dishes */}
         <div className="popular-dishes">

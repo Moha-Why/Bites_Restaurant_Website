@@ -15,9 +15,7 @@ const Slider = ({pervEl, nextEl}) => {
     const menuUpdate = useStore(state => state.menuUpdate)
     const lanValue = useStore(state => state.lanValue)
     const cards = useStore(state => state.menu)
-    const topMenu = [...cards].sort((a, b) => {return b.rating - a.rating})
-    
-    topMenu.length = 6
+    const topMenu = [...cards].sort((a, b) => {return b.rating - a.rating}).slice(0,8)
 
     useEffect(() => {
         menuUpdate()
@@ -25,7 +23,8 @@ const Slider = ({pervEl, nextEl}) => {
 
   return (
     <>
-        {topMenu.length > 0 ? <Swiper
+        {topMenu.length !== 0 ? 
+        <Swiper
         className={`px-5 ${lanValue ? "" : "[&_.swiper-wrapper]:flex-row-reverse"}`}
         modules={[Navigation]}
         navigation={{
@@ -33,9 +32,10 @@ const Slider = ({pervEl, nextEl}) => {
             nextEl: '.next-btn',
         }}
         spaceBetween={20}
-        slidesPerView={4}
+        slidesPerGroup={1}
         loop={true}
         grabCursor={true}
+        loopAdditionalSlides={true}
         breakpoints={{
             320: { slidesPerView: 1 },
             540: { slidesPerView: 2 },
@@ -43,13 +43,17 @@ const Slider = ({pervEl, nextEl}) => {
             1024: { slidesPerView: 4 }
       }}
         >
-        {topMenu.map(ele => {
+        {topMenu.map((ele, index) => {
             return(
-                <SwiperSlide className=''>
+                <SwiperSlide  key={index} className=''>
                     <FoodCard item={ele}/>
                 </SwiperSlide>
             )
-        })}            
+        })}
+        {/* <SwiperSlide><div></div></SwiperSlide>            
+        <SwiperSlide><div></div></SwiperSlide>            
+        <SwiperSlide><div></div></SwiperSlide>            
+        <SwiperSlide><div></div></SwiperSlide>             */}
         </Swiper>: null}
     </>
   )
